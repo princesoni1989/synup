@@ -1,0 +1,35 @@
+{
+  "name": "synup",
+  "version": "1.0.0",
+  "description": "Synup API client library for node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/istanbul test ./node_modules/.bin/_mocha -- -R spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/synup/synup.git"
+  },
+  "keywords": [
+    "node",
+    "cron",
+    "schedular"
+  ],
+  "author":{
+   "name": "Prince Soni",
+   "email":"1989prince.soni@gmail.com"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/princesoni1989/synup/issues"
+  },
+  "homepage": "https://github.com/princesoni1989/synup#readme",
+  "dependencies": {
+    "request": "^2.69.0"
+  },
+  "devDependencies": {
+    "istanbul": "^0.4.2",
+    "mocha": "^2.4.5",
+    "should": "^8.3.0"
+  }
+}
