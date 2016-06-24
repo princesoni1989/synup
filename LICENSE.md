@@ -1,4 +1,4 @@
-setcronjob is released under the ISC License
+synup is released under the ISC License
 Copyright (c) 2016 Prince Soni
 
 Permission is hereby granted, free of charge, to any person

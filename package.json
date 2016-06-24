@@ -12,8 +12,9 @@
   },
   "keywords": [
     "node",
-    "cron",
-    "schedular"
+    "synup",
+    "reputation",
+    "business"
   ],
   "author":{
    "name": "Prince Soni",
@@ -26,10 +27,5 @@
   "homepage": "https://github.com/princesoni1989/synup#readme",
   "dependencies": {
     "request": "^2.69.0"
-  },
-  "devDependencies": {
-    "istanbul": "^0.4.2",
-    "mocha": "^2.4.5",
-    "should": "^8.3.0"
   }
 }
