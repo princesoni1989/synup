@@ -1,9 +1,9 @@
 # Synup Client Library for Node.js
  It is used to tracks hundreds of thousands of business profiles, monitor millions of interactions to provide businesses with automated marketing as well as insights that they would otherwise not get.
  
-This module provide complete support to synup rest api calls.<br/>
-
-Complete api doc can be found [here](http://v2.synup.com/api-docs/v2/)
+This module provide complete support to synup rest api calls. Synup tracks hundreds of thousands of business profiles, monitor millions of interactions to provide businesses with automated marketing as well as insights that they would otherwise not get
+<br/>
+Complete api doc can be found [here](http://v2.synup.com/api-docs/v2/).
 
 ```javascript
 var synupModule = require('../index');
