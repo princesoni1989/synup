@@ -1,12 +1,17 @@
 # Synup Client Library for Node.js
- It is used to tracks hundreds of thousands of business profiles, monitor millions of interactions to provide businesses with automated marketing as well as insights that they would otherwise not get.
+ This module provide node js wrapper around [Synup](http://synup.com/) API.
  
-This module provide complete support to synup rest api calls. Synup tracks hundreds of thousands of business profiles, monitor millions of interactions to provide businesses with automated marketing as well as insights that they would otherwise not get
-<br/>
-Complete api doc can be found [here](http://v2.synup.com/api-docs/v2/).
+ Synup is used to tracks hundreds of thousands of business profiles, monitor millions of interactions to provide businesses with automated marketing as well as insights that they would otherwise not get.
+ 
+Complete API doc for Synup can be found [here](http://v2.synup.com/api-docs/v2/)
+
+
+
+## Example
+
 
 ```javascript
-var synupModule = require('../index');
+var synupModule = require('synup');
 var synup = new synupModule({
     email: 'xyz.com',
     token: 'xxxxxxxx'
@@ -35,13 +40,13 @@ synup.listBusiness(function (err, result) {
 
 ## Quick Start
 
-You will need valid Setcronjob Token and email id to work with this module, You can obtain token after signing up [here](http://synup.com/).
+You will need valid Synup Token and email id to work with this module, You can obtain token after signing up [here](http://synup.com/).
 
 
 ## How to use different Api:
 
 ```javascript
-var synupModule = require('../index');
+var synupModule = require('synup');
 var synup = new synupModule({
     email: 'xyz.com',
     token: 'xxxxxxxx'

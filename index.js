@@ -1,4 +1,4 @@
-var helper = require('./helper');
+var request = require('request');
 var baseUrl = 'http://ftv2-api.stg.synup.com/api/v2/';
 
 
@@ -23,12 +23,12 @@ function Synup(config) {
  *list business
  *@param {Function} callback - callback function
  */
-exports.listBusiness = function (callback) {
+Synup.prototype.listBusiness = function (callback) {
     var options = {
         method: 'get',
         url: 'businesses.json'
     }
-    makeCall(options, callback);
+    makeCall(options, this.auth, callback);
 }
 
 /**
@@ -38,16 +38,16 @@ exports.listBusiness = function (callback) {
  *@param {boolean} params - details
  *@param {Function} callback - callback function
  */
-exports.infoBusiness = function (id, details, callback) {
-    var url = 'businesses/' + id + ' .json';
+Synup.prototype.infoBusiness = function (id, details, callback) {
+    var url = 'businesses/' + id + '.json';
     if (details) {
         url += '?type=all';
     }
     var options = {
-        method: url,
-        url: 'businesses.json'
+        method: 'get',
+        url: url
     }
-    makeCall(options, callback);
+    makeCall(options, this.auth, callback);
 
 }
 
@@ -57,12 +57,12 @@ exports.infoBusiness = function (id, details, callback) {
  * @param {string} params - id
  *@param {Function} callback - callback function
  */
-exports.businessListing = function (id, callback) {
+Synup.prototype.businessListing = function (id, callback) {
     var options = {
-        method: get,
-        url: 'businesses/' + id + ' /listings.json'
+        method: 'get',
+        url: 'businesses/' + id + '/listings.json'
     }
-    makeCall(options, callback);
+    makeCall(options, this.auth, callback);
 }
 
 /**
@@ -71,12 +71,12 @@ exports.businessListing = function (id, callback) {
  * @param {string} params - id
  *@param {Function} callback - callback function
  */
-exports.businessReview = function (id, callback) {
+Synup.prototype.businessReview = function (id, callback) {
     var options = {
-        method: get,
-        url: 'businesses/' + id + ' /listings.json'
+        method: 'get',
+        url: 'businesses/' + id + '/listings.json'
     }
-    makeCall(options, callback);
+    makeCall(options, this.auth, callback);
 }
 
 /**
@@ -85,12 +85,12 @@ exports.businessReview = function (id, callback) {
  * @param {string} params - id
  *@param {Function} callback - callback function
  */
-exports.businessRanking = function (id, callback) {
+Synup.prototype.businessRanking = function (id, callback) {
     var options = {
-        method: get,
-        url: 'businesses/' + id + ' /ranking.json'
+        method: 'get',
+        url: 'businesses/' + id + '/ranking.json'
     }
-    makeCall(options, callback);
+    makeCall(options, this.auth, callback);
 }
 
 /**
@@ -99,12 +99,12 @@ exports.businessRanking = function (id, callback) {
  *@param {string} params - id
  *@param {Function} callback - callback function
  */
-exports.businessArchive = function (id, callback) {
+Synup.prototype.businessArchive = function (id, callback) {
     var options = {
-        method: get,
-        url: 'businesses/' + id + ' /archive.json'
+        method: 'post',
+        url: 'businesses/' + id + '/archive.json'
     }
-    makeCall(options, callback);
+    makeCall(options, this.auth, callback);
 }
 
 /**
@@ -113,12 +113,12 @@ exports.businessArchive = function (id, callback) {
  * @param {object} params - params
  *@param {Function} callback - callback function
  */
-exports.createBusiness = function (params, callback) {
+Synup.prototype.createBusiness = function (params, callback) {
     var options = {
         method: 'post',
         url: 'businesses.json'
     }
-    makeCall(options, {business: params}, callback);
+    makeCall(options, this.auth, {business: params}, callback);
 }
 
 /**
@@ -128,12 +128,12 @@ exports.createBusiness = function (params, callback) {
  *@param {object} params - params
  *@param {Function} callback - callback function
  */
-exports.updateBusiness = function (id, params, callback) {
+Synup.prototype.updateBusiness = function (id, params, callback) {
     var options = {
         method: 'put',
         url: 'businesses/' + id + '.json'
     }
-    makeCall(options, {business: params}, callback);
+    makeCall(options, this.auth, {business: params}, callback);
 }
 
 /**
@@ -141,12 +141,12 @@ exports.updateBusiness = function (id, params, callback) {
  * Archive business info
  *@param {Function} callback - callback function
  */
-exports.getCountries = function (callback) {
+Synup.prototype.getCountries = function (callback) {
     var options = {
-        method: 'put',
+        method: 'get',
         url: 'countries.json'
     }
-    makeCall(options, callback);
+    makeCall(options, this.auth, callback);
 }
 
 /**
@@ -155,12 +155,12 @@ exports.getCountries = function (callback) {
  *@param {string} params - id
  *@param {Function} callback - callback function
  */
-exports.getState = function (id, callback) {
+Synup.prototype.getState = function (id, callback) {
     var options = {
         method: 'get',
         url: 'countries/' + id + '/states.json'
     }
-    makeCall(options, callback);
+    makeCall(options, this.auth, callback);
 }
 
 /**
@@ -169,12 +169,12 @@ exports.getState = function (id, callback) {
  * Archive business info
  *@param {Function} callback - callback function
  */
-exports.getSubCategory = function (callback) {
+Synup.prototype.getSubCategory = function (callback) {
     var options = {
         method: 'get',
         url: 'sub_categories.json'
     }
-    makeCall(options, callback);
+    makeCall(options, this.auth, callback);
 }
 
 
@@ -184,27 +184,28 @@ exports.getSubCategory = function (callback) {
  * @param params -  params
  * @param callback - callback function
  */
-var makeCall = function (options, params, callback) {
-    checkAuth(this.auth);
-    if (arguments.length === 2) {
+var makeCall = function (options, auth, params, callback) {
+    checkAuth(auth);
+    if (arguments.length === 3) {
         callback = params;
-        params = {};
+        params = null;
     }
     var requestObj = {
-        url: baseUrl + options.method,
+        url: baseUrl + options.url,
         rejectUnauthorized: false,
-        method: options.type,
-        qs: this.auth,
-        json: params
+        method: options.method,
+        qs: auth
     }
-
+    if(params){
+        requestObj.json = params;
+    }
     request(requestObj, function (err, response, body) {
         if (!err && response.statusCode === 200) {
             try {
                 var result = JSON.parse(body);
                 return callback(null, result);
             } catch (e) {
-                return callback(e, null);
+                return callback(null, result);
             }
         } else {
             return callback(err || body, null);
@@ -218,10 +219,10 @@ var makeCall = function (options, params, callback) {
  * @param token
  */
 function checkAuth(config) {
-    if (!config || !config.token || !config.email) {
+    if (!config || !config.auth_token || !config.user_email) {
         throw new Error('No access token or email found');
     }
 }
 
 
-module.exports = this;
+module.exports = Synup;

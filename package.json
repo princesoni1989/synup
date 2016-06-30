@@ -4,7 +4,6 @@
   "description": "Synup API client library for node.js",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/istanbul test ./node_modules/.bin/_mocha -- -R spec"
   },
   "repository": {
     "type": "git",
@@ -14,7 +13,8 @@
     "node",
     "synup",
     "reputation",
-    "business"
+    "business",
+    "location"
   ],
   "author":{
    "name": "Prince Soni",
