@@ -32,11 +32,11 @@ synup.listBusiness(function (err, result) {
 
 ## Installation
 
-`npm install sypup  //install locally`
+`npm install synup  //install locally`
 
-`npm install -g sypup  //install globally`
+`npm install -g synup  //install globally`
 
-`npm install sypup --save  //install locally and save to package json`
+`npm install synup --save  //install locally and save to package json`
 
 ## Quick Start
 
